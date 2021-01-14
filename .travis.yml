@@ -2,7 +2,7 @@ language: c
 
 script:
   - gcc main.c
-  - echo | gem install travis
-  - travis encrypt SOMEVAR="secretvalue"
+  - gem install travis
+  - echo "y" | travis encrypt SOMEVAR="secretvalue"
 
 
