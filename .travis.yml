@@ -2,3 +2,22 @@ language: c
 
 script:
   - gcc main.c
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "NzlOH6UiFtpAZRX+QZM8PLN4xCcdLCP3IvcZK+6Bsd5b88fxqv5+rpdi0wClh+8PCv1S2ZNJmrHVxgnD5g2PB3+mQiKzSMgsPnN7f0tNixBdApjkxlnPdhWpM3KLRNn52n45ARA9ZRt5rGaQ70tf4nadpm8U0SdQ4TFVd7VhHdSug8AQjoKygXrnLBSo/yQQMkcqVqGgo8cMNZE+cQc7h4O2ZqIBmraQgqZL73qTesaNVlTIQE7sMIuLCsEhDf7mUf00MCNNmiNO8t1Mw5bJDzk8lvfZP+NrdLOjfAwS0mdwVHQGP7HFEjprS0awcQabxqUWidYbfWrgRZQHnXjqmb7sW4qANXy8embrMkrTJ+QXJvZPTc0ukrw8Ry/RevAsUBYZgf+y+5F1hz8IxEaZaebzNbFeqgs3AS/s5FirQl6oLNaFGfWwRZTD20khg9hSGsPgIu9mAknyIC8CzqMDQAQ2yL/trpOF57cZKsVnrOGV5fnLzIKRAmLTJKumTWvyvSlGtzlmN6U0TOagR4kArZLxfpPSXqsaQqY9eBRLoLyCZLTejmDUcyXZPGsLsvF0ifsbeV63+lvOk5lfM0g51rY7Ud9CHpshdFbXdzEyVhg2wgXVAfhXlWkpRMwhDHz9fDhT4qlwC28c7YSiH81Vyrnhjx55yzIrOgN4d7jh2jo="
+
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "eddiehorng/hello"
+      description: "hi"
+    notification_email: eddiehorng.tw@gmail.com
+    build_command_prepend: gcc --version
+    build_command: gcc main.c
+    branch_pattern: main
