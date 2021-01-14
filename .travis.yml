@@ -3,6 +3,6 @@ language: c
 script:
   - gcc main.c
   - gem install travis
-  - yes | travis encrypt SOMEVAR="secretvalue"
+  - yes | travis encrypt COVERITY_SCAN_TOKEN="jh8xxh9-o3E8ovLJQQtnRQ"
 
 
