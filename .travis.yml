@@ -2,6 +2,6 @@ language: c
 
 script:
   - gcc main.c
-  - travis encrypt SOMEVAR="secretvalue"
+  - gem install travis && travis encrypt SOMEVAR="secretvalue"
 
 
