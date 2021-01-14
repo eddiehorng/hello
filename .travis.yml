@@ -3,6 +3,6 @@ language: c
 script:
   - gcc main.c
   - gem install travis
-  - echo "y" | travis encrypt SOMEVAR="secretvalue"
+  - yes | travis encrypt SOMEVAR="secretvalue"
 
 
